@@ -1,13 +1,12 @@
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import TodoList from '../components/TodoList'
-
-const mapStateToProps=state=>({
-    todos:state.todos
+import { toggleTodo } from "../actions";
+const mapStateToProps = state => ({
+    todos: state.todos
 })
 
-const mapDispatchToProps =dispatch=>({
-    toggleTodo:is=>dispatch({type:
-    'TOGGLE_TODO',id})
+const mapDispatchToProps = dispatch => ({
+    toggleTodo: id => dispatch(toggleTodo(id))
 })
 
-export default connect (mapDispatchToProps,mapStateToProps)(TodoList)
+export default connect(mapStateToProps,mapDispatchToProps)(TodoList)

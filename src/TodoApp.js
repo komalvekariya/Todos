@@ -1,29 +1,30 @@
-import React, {Component} from 'react';
-import {Platform, Button,StyleSheet, Text, View} from 'react-native';
-import AddTodo from './containers/AddTodo'
-import VisibleTodos from './containers/VisibleTodos'
-
+import React, { Component } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import AddTodo from '../src/containers/AddTodo'
+import VisibleTodos from '../src/containers/VisibleTodos'
 
 export default class TodoApp extends Component {
-    state={
-        todos:[],
-        visibilityFilter:'SHOW_ALL_TODOS'
+    state = {
+        todos: [],
+        visibilityFilter: 'SHOW_ALL_TODOS'
     }
-  render() {
-    return (
-      <View style={styles.container}>
-       <AddTodo/>
-       <View>
-            <VisibleTodos/>
-       </View>
-      </View>
-    );
-  }
+    render() {
+        const { container } = styles
+        return (
+            <View style={container}>
+                <AddTodo />
+                <View style={{flex:5}}>
+                    <VisibleTodos />
+                </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop:40
-  }
+    container: {
+        flex: 1,
+        paddingTop: 50,
+        backgroundColor:'white'
+    }
 });

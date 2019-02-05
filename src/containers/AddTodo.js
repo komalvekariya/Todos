@@ -1,36 +1,48 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux'
+import {addTodo} from '../actions'
 
-import {connect} from 'react-redux'
-
-addTodo = (text) => {
-    this.props.dispatch({ type: 'ADD_TODO', text })
-    this.setState({ text: '' })
-}
 class AddTodo extends Component {
-    state = {
-        text: ''
+    constructor(props) {
+        super(props)
+        this.state = {
+            text: ''
+        }
     }
+
+    addTodo = (text) => {
+        this.props.dispatch(addTodo(text))
+        this.setState({ text: '' })
+    }
+
     render() {
         return (
-            <View style={{ flexDirection: 'row', marginHorizontal: 20 }}>
+            <View style={styles.container}>
                 <TextInput
                     onChangeText={(text) => this.setState({ text })}
                     value={this.state.text}
                     placeholder='Eg. Create New Vedio'
-                    style={{ borderColor: '#eaeaea', height: 50, flex: 1, padding: 5 }} />
-                <Button onPress={() => this.addTodo(this.state.text)} title={'ADD'} />
+                    style={{ borderBottomColor: '#eaeaea', height: 50, flex: 1, padding: 5 }} />
+
+                <View>
+                    <TouchableOpacity onPress={() => this.addTodo(this.state.text)}>
+                        <Text style={{ fontSize: 40, color: 'red' }}>+</Text>
+                    </TouchableOpacity>
+                </View>
 
             </View>
         );
     }
 }
 
+export default connect()(AddTodo)
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'row',
 
     }
 });
 
-export default connect()(AddTodo)
