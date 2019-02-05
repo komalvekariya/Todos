@@ -18,21 +18,23 @@ const TodoList = ({ todos, toggleTodo }) => {
             case 'SHOW_ALL':
                 return todos;
             case 'SHOW_COMPLETED':
-                return todos.filter(id=>id.completed);
+                return todos.filter(text => text.completed);
+            case 'SHOW_ACTIVATED':
+                return todos.filter(text => !text.completed);
         }
     }
 
-const visibleTodos=getVisible(
-    todos,
-    visibilityFilter
-)
+    const visibleTodos = getVisible(
+        todos,
+        visibilityFilter
+    )
 
     return (
         <View style={styles.container}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                 <FilterList filter='SHOW_ALL' title='All' />
                 <FilterList filter='SHOW_ACTIVATED' title='Activated' />
-                <FilterList filter='SHOW_COMPLETED' title='Completed' onpress={this.getVisible} />
+                <FilterList filter='SHOW_COMPLETED' title='Completed' />
 
             </View>
             <View style={{ flex: 6 }}>
@@ -44,9 +46,7 @@ const visibleTodos=getVisible(
                             padding: 15,
                             textDecorationLine: todo.completed ? 'line-through' : 'none'
                         }}>{todo.text}</Text>
-                    </TouchableOpacity>
-
-                )}
+                    </TouchableOpacity>)}
             </View>
 
 
