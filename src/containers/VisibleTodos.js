@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    toggleTodo: id => dispatch(toggleTodo(id))
+    toggleTodo: id => dispatch(toggleTodo(id)),
+    setVisibility: filter => dispatch({ type: 'SET_VISIBILITY_FILTER', filter })
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(TodoList)

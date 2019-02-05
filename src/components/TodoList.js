@@ -3,42 +3,33 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import FilterList from '../components/FilterList'
 import visibilityFilter from '../reducers/VisibilityFilter';
+import { connect } from 'react-redux'
 // create a component
 
 
 
-const TodoList = ({ todos, toggleTodo }) => {
-    console.log('todolist', todos.text)
+const TodoList = ({ todos, toggleTodo, setVisibility }) => {
+    console.log('todolist', todos.text,visibilityFilter.filter)
 
     const getVisible = (
         todos,
-        filter
     ) => {
-        switch (filter) {
-            case 'SHOW_ALL':
-                return todos;
-            case 'SHOW_COMPLETED':
-                return todos.filter(text => text.completed);
-            case 'SHOW_ACTIVATED':
-                return todos.filter(text => !text.completed);
-        }
+        return todos.filter(todo => !todo.completed)
     }
 
     const visibleTodos = getVisible(
-        todos,
-        visibilityFilter
+        todos
     )
 
     return (
         <View style={styles.container}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <FilterList filter='SHOW_ALL' title='All' />
+                <FilterList filter='SHOW_ALL' title='All' onpress={()=> setVisibility('SHOW_ALL')} />
                 <FilterList filter='SHOW_ACTIVATED' title='Activated' />
                 <FilterList filter='SHOW_COMPLETED' title='Completed' />
-
             </View>
             <View style={{ flex: 6 }}>
-                {todos.map(todo =>
+                {visibleTodos.map(todo =>
                     <TouchableOpacity key={todo.id} onPress={() => toggleTodo(todo.id)}>
                         <Text style={{
                             fontSize: 20,
@@ -54,6 +45,10 @@ const TodoList = ({ todos, toggleTodo }) => {
 
     );
 };
+
+mapDispatchToProps = (dispatch) => {
+    
+}
 //make this component available to the app
 export default TodoList;
 

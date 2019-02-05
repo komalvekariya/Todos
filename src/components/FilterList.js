@@ -7,8 +7,7 @@ const FilterList = ({ filter, title,onpress }) => {
        
             <Button
                 title={title}
-                 onPress={this.props.dispatch({type:'SET_VISIBILITY_FILTER',filter})} 
-               // onPress={onpress}
+                onPress={onpress}
                 />
 
     )
