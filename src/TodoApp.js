@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native'
 import AddTodo from '../src/containers/AddTodo'
 import VisibleTodos from '../src/containers/VisibleTodos'
 
 export default class TodoApp extends Component {
-    
+
     render() {
         const { container } = styles
         return (
             <View style={container}>
                 <AddTodo />
-                <View style={{flex:5}}>
-                    <VisibleTodos />
+                <VisibleTodos />
+                <View style={{ padding:10 }}>
+                    <Button
+                        title="nextPage"
+                        onPress={() => this.props.navigation.navigate('DataApp')}
+                        style={{}}
+                    />
                 </View>
             </View>
         );
@@ -20,8 +25,8 @@ export default class TodoApp extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingTop: 50,
-        backgroundColor:'white'
+        flex:1,
+        backgroundColor: '#fff',
+        
     }
 });

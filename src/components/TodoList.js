@@ -1,14 +1,15 @@
 //import liraries
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Button, TouchableOpacity } from 'react-native';
-import FilterList from '../components/FilterList'
-// import visibilityFilter from '../reducers/VisibilityFilter';
-import { connect } from 'react-redux'
-// create a component
+
 
 
 
 const TodoList = ({ todos, toggleTodo, setVisibility, visibilityFilter }) => {
+    if (visibilityFilter.filter == undefined) {
+        console.log('here.........error')
+        visibilityFilter.filter = 'SHOW_ALL'
+    }
     console.log('todolist', todos.text, visibilityFilter.filter)
 
     const getVisible = (
@@ -23,8 +24,6 @@ const TodoList = ({ todos, toggleTodo, setVisibility, visibilityFilter }) => {
                 return todos.filter(todo => todo.completed)
             default:
                 return todos
-
-
         }
     }
     const visibleTodos = getVisible(
@@ -40,48 +39,44 @@ const TodoList = ({ todos, toggleTodo, setVisibility, visibilityFilter }) => {
                     <Button title='Completed' onPress={() => setVisibility('SHOW_COMPLETED')} />
                 </View>
                 {visibilityFilter.filter == 'SHOW_ALL' ?
-                    <View style={{ flex: 6 }}>
+                    <View>
                         {visibleTodos.map(todo =>
                             <TouchableOpacity key={todo.id} onPress={() => toggleTodo(todo.id)}>
                                 <Text style={{
                                     fontSize: 20,
-                                    backgroundColor: '#F8F8F8',
-                                    padding: 15,
+                                    backgroundColor: '#Fff',
+                                    padding: 5,
                                     textDecorationLine: todo.completed ? 'line-through' : 'none'
                                 }}>{todo.text}</Text>
                             </TouchableOpacity>)}
                     </View> :
-                    <View>
+                    <View >
                         {visibleTodos.map(todo =>
-                                    <Text style={{
-                                    fontSize: 20,
-                                    backgroundColor: '#F8F8F8',
-                                    padding: 15,
-                                    textDecorationLine: todo.completed ? 'line-through' : 'none'
-                                }} key={todo.id}>{todo.text}</Text>
-                            )}
+                            <Text style={{
+                                fontSize: 20,
+                                backgroundColor: '#Fff',
+                                padding: 5,
+                                textDecorationLine: todo.completed ? 'line-through' : 'none'
+                            }} key={todo.id}>{todo.text}</Text>
+                        )}
 
-                    </View>
+                    </View>}
             </View>
         </ScrollView>
-        
-            );
-        };
-        
-mapDispatchToProps = (dispatch) => {
 
-                }
-                //make this component available to the app
-                export default TodoList;
-                
-                // define your styles
+    );
+};
+export default TodoList;
+
+// define your styles
 const styles = StyleSheet.create({
-                    container: {
-                    flex: 1,
-                marginHorizontal: 20,
-                // backgroundColor: 'red'
-            },
-        });
-        
-        
-        
+    container: {
+
+        marginHorizontal: 20,
+
+    },
+});
+
+
+
+
