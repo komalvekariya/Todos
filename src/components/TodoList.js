@@ -39,37 +39,49 @@ const TodoList = ({ todos, toggleTodo, setVisibility, visibilityFilter }) => {
                     <Button title='Activated' onPress={() => setVisibility('SHOW_ACTIVATED')} />
                     <Button title='Completed' onPress={() => setVisibility('SHOW_COMPLETED')} />
                 </View>
-                <View style={{ flex: 6 }}>
-                    {visibleTodos.map(todo =>
-                        <TouchableOpacity key={todo.id} onPress={() => toggleTodo(todo.id)}>
-                            <Text style={{
-                                fontSize: 20,
-                                backgroundColor: '#F8F8F8',
-                                padding: 15,
-                                textDecorationLine: todo.completed ? 'line-through' : 'none'
-                            }}>{todo.text}</Text>
-                        </TouchableOpacity>)}
-                </View>
+                {visibilityFilter.filter == 'SHOW_ALL' ?
+                    <View style={{ flex: 6 }}>
+                        {visibleTodos.map(todo =>
+                            <TouchableOpacity key={todo.id} onPress={() => toggleTodo(todo.id)}>
+                                <Text style={{
+                                    fontSize: 20,
+                                    backgroundColor: '#F8F8F8',
+                                    padding: 15,
+                                    textDecorationLine: todo.completed ? 'line-through' : 'none'
+                                }}>{todo.text}</Text>
+                            </TouchableOpacity>)}
+                    </View> :
+                    <View>
+                        {visibleTodos.map(todo =>
+                                    <Text style={{
+                                    fontSize: 20,
+                                    backgroundColor: '#F8F8F8',
+                                    padding: 15,
+                                    textDecorationLine: todo.completed ? 'line-through' : 'none'
+                                }} key={todo.id}>{todo.text}</Text>
+                            )}
+
+                    </View>}
             </View>
         </ScrollView>
-
-    );
-};
-
+        
+            );
+        };
+        
 mapDispatchToProps = (dispatch) => {
 
-}
-//make this component available to the app
-export default TodoList;
-
-// define your styles
+                }
+                //make this component available to the app
+                export default TodoList;
+                
+                // define your styles
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginHorizontal: 20,
-        // backgroundColor: 'red'
-    },
-});
-
-
-
+                    container: {
+                    flex: 1,
+                marginHorizontal: 20,
+                // backgroundColor: 'red'
+            },
+        });
+        
+        
+        
