@@ -61,7 +61,7 @@ const TodoList = ({ todos, toggleTodo, setVisibility, visibilityFilter }) => {
                                 }} key={todo.id}>{todo.text}</Text>
                             )}
 
-                    </View>}
+                    </View>
             </View>
         </ScrollView>
         
