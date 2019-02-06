@@ -4,10 +4,7 @@ import AddTodo from '../src/containers/AddTodo'
 import VisibleTodos from '../src/containers/VisibleTodos'
 
 export default class TodoApp extends Component {
-    state = {
-        todos: [],
-        visibilityFilter: 'SHOW_ALL_TODOS'
-    }
+    
     render() {
         const { container } = styles
         return (

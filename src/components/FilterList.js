@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Button, TouchableOpacity } from 'react-native';
 import VisibilityFilter from '../reducers/VisibilityFilter'
 
-const FilterList = ({ filter, title,onpress }) => {
+const FilterList = ({  title,onpress }) => {
     return (
        
             <Button
