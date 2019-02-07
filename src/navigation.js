@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import TodoApp from './TodoApp'
-import DataApp from './DataApp'
-import { createAppContainer,createStackNavigator } from 'react-navigation'
-
+import { createAppContainer,createStackNavigator,createBottomTabNavigator } from 'react-navigation'
+import ShowData from './containers/ShowData';
+//import ShowData from './containers/VisibleTodos'
 const Navigator = createStackNavigator({
     TodoApp: { screen: TodoApp },
-    DataApp: { screen: DataApp },
+    ShowData: { screen: ShowData  },
 },      
     {
         initialRouteName: 'TodoApp',
     });
 
+    
 
     const AppContainer = createAppContainer(Navigator);
 

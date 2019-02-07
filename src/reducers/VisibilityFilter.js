@@ -1,3 +1,5 @@
+
+
 export default visibilityFilter = (state = "SHOW_ALL", action) => {
 
     switch (action.type) {

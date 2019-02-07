@@ -3,6 +3,7 @@ import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native'
 import AddTodo from '../src/containers/AddTodo'
 import VisibleTodos from '../src/containers/VisibleTodos'
 
+
 export default class TodoApp extends Component {
 
     render() {
@@ -11,11 +12,10 @@ export default class TodoApp extends Component {
             <View style={container}>
                 <AddTodo />
                 <VisibleTodos />
-                <View style={{ padding:10 }}>
+                <View style={{ padding: 10 }}>
                     <Button
                         title="nextPage"
-                        onPress={() => this.props.navigation.navigate('DataApp')}
-                        style={{}}
+                        onPress={() => this.props.navigation.navigate('ShowData')}
                     />
                 </View>
             </View>
@@ -25,8 +25,8 @@ export default class TodoApp extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         backgroundColor: '#fff',
-        
+
     }
 });
