@@ -36,7 +36,7 @@ const TodoList = ({ todos, toggleTodo, setVisibility, visibilityFilter }) => {
                     <Button title='Completed' onPress={() => setVisibility('SHOW_COMPLETED')} />
                 </View>
 
-                {visibilityFilter.filter == 'SHOW_ALL' ?
+                {visibilityFilter.filter == undefined  || visibilityFilter.filter == 'SHOW_ALL' ?
                     <View>
                         {visibleTodos.map(todo =>
                             <TouchableOpacity key={todo.id} onPress={() => toggleTodo(todo.id)}>

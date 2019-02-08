@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { toggleTodo } from '../actions'
 
 
-const active = ({ todos, toggleTodo}) => {
+const active = ({ todos, toggleTodo }) => {
 
     const getVisible = (
         todos,
@@ -13,28 +13,30 @@ const active = ({ todos, toggleTodo}) => {
         return todos.filter(todo => !todo.completed)
     }
 
+    const visibletodos = getVisible(todos)
+    // const count = visibletodos.length().tostring()
+    var count = Object.keys(visibletodos).length;
 
-const visibletodos = getVisible(todos)
-
-return (
-    <ScrollView>
-        <View style={styles.container}>
-            <View>
-                {visibletodos.map(todo =>
-                    <TouchableOpacity key={todo.id} onPress={() => toggleTodo(todo.id)}>
+    return (
+        <ScrollView>
+            <View style={styles.container}>
+                <View style={{ flex: 1.5 }}>
+                    {visibletodos.map(todo =>
                         <Text style={{
                             fontSize: 20,
                             backgroundColor: '#Fff',
                             padding: 5,
                             textDecorationLine: todo.completed ? 'line-through' : 'none'
-                        }}>{todo.text}</Text>
-                    </TouchableOpacity>)}
+                        }} key={todo.id}>{todo.text}
+                        </Text>)}
+                </View>
+                <View style={{ alignItems: 'center', flex: .1 }}>
+                    <Text style={{ fontWeight: 'bold' }}>Number of List:={count}</Text>
+                </View>
             </View>
+        </ScrollView>
 
-        </View>
-    </ScrollView>
-
-);
+    );
 };
 
 const mapStateToProps = state => ({
@@ -50,9 +52,7 @@ const mapDispatchToProps = dispatch => ({
 // define your styles
 const styles = StyleSheet.create({
     container: {
-
-        marginHorizontal: 20,
-
+        flex:1
     },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(active)

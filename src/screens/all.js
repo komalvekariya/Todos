@@ -1,28 +1,29 @@
 //import liraries
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 import { toggleTodo } from '../actions'
 
-const all = ({ todos, toggleTodo }) => {
-    
+const all = ({ todos }) => {
+    const count = Object.keys(todos).length;
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <View>
-                    {todos.map(todo =>
-                        <TouchableOpacity key={todo.id} onPress={() => toggleTodo(todo.id)}>
-                            <Text style={{
-                                fontSize: 20,
-                                backgroundColor: '#Fff',
-                                padding: 5,
-                                textDecorationLine: todo.completed ? 'line-through' : 'none'
-                            }}>{todo.text}</Text>
-                        </TouchableOpacity>)}
-                </View>
-            </View>
-        </ScrollView>
 
+        <View style={styles.container}>
+            <View style={{ flex: 1.5 }}>
+                <ScrollView>
+                    {todos.map(todo =>
+                        <Text style={{
+                            fontSize: 20,
+                            padding: 5,
+                            textDecorationLine: todo.completed ? 'line-through' : 'none'
+                        }} key={todo.id}>{todo.text}
+                        </Text>)}
+                </ScrollView>
+            </View>
+            <View style={{ alignItems: 'center', flex: .1 }}>
+                <Text style={{ fontWeight: 'bold' }}>Number of List:={count}</Text>
+            </View>
+        </View>
     );
 };
 
@@ -38,9 +39,7 @@ const mapDispatchToProps = dispatch => ({
 // define your styles
 const styles = StyleSheet.create({
     container: {
-
-        marginHorizontal: 20,
-
+        flex: 1,
     },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(all)

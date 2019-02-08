@@ -13,24 +13,25 @@ const completed = ({ todos, toggleTodo }) => {
     }
 
 
-const visibletodos = getVisible(todos)
-
+    const visibletodos = getVisible(todos)
+    const count = Object.keys(visibletodos).length
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <View>
+                <View style={{ flex: 1.5 }}>
                     {visibletodos.map(todo =>
-                        <TouchableOpacity key={todo.id} onPress={() => toggleTodo(todo.id)}>
-                            <Text style={{
-                                fontSize: 20,
-                                backgroundColor: '#Fff',
-                                padding: 5,
-                                textDecorationLine: todo.completed ? 'line-through' : 'none'
-                            }}>{todo.text}</Text>
-                        </TouchableOpacity>)}
+                        <Text style={{
+                            fontSize: 20,
+                            backgroundColor: '#Fff',
+                            padding: 5,
+                            textDecorationLine: todo.completed ? 'line-through' : 'none'
+                        }} key={todo.id}>{todo.text}
+                        </Text>)}
                 </View>
-                
+                <View style={{ alignItems: 'center', flex: .1 }}>
+                    <Text style={{ fontWeight: 'bold' }}>Number of List:={count}</Text>
+                </View>
             </View>
         </ScrollView>
 
@@ -44,14 +45,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     toggleTodo: id => dispatch(toggleTodo(id)),
-    
+
 
 })
 // define your styles
 const styles = StyleSheet.create({
     container: {
 
-        marginHorizontal: 20,
+       flex:1
 
     },
 });
